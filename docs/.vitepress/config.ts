@@ -117,6 +117,14 @@ export default defineConfig({
               { text: 'Overview', link: 'components/nav/nav' },
               { text: 'Overrides', link: 'components/nav/overrides' }
             ]
+          },
+          {
+            text: 'Marquee',
+            collapsed: true,
+            items: [
+              { text: 'Overview', link: 'components/marquee/marquee' },
+              { text: 'Overrides', link: 'components/marquee/overrides' }
+            ]
           }
         ]
       }
