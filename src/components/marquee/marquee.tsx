@@ -17,11 +17,12 @@ const DyvixMarquee = Object.assign(
         items,
         className,
         animation = 'fade',
+        reverse = false,
         overrides,
         theme,
         repeat = -1,
         speed = 1,
-        pauseOnHover,
+        pauseOnHover = false,
         timeline,
         style,
         ...rest
@@ -233,18 +234,20 @@ const DyvixMarquee = Object.assign(
           gsap.killTweensOf(track);
 
           const baseDuration = 20 / (speed || 1);
+          const targetSource = reverse ? -50 : 0;
+          const targetDestination = reverse ? 0 : -50;
 
           let activeTween = gsap.fromTo(
             track,
-            { xPercent: 0 },
+            { xPercent: targetSource },
             {
-              xPercent: -50,
+              xPercent: targetDestination,
               duration: baseDuration,
               ease: 'none',
               repeat: repeat,
               onRepeat: () => {
                 gsap.set(track, {
-                  xPercent: 0
+                  xPercent: targetSource
                 });
               }
             }
@@ -271,7 +274,7 @@ const DyvixMarquee = Object.assign(
         },
         {
           scope: trackRef,
-          dependencies: [displayItems, speed, repeat, pauseOnHover]
+          dependencies: [displayItems, speed, repeat, pauseOnHover, reverse]
         }
       );
       return (

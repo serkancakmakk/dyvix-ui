@@ -96,6 +96,7 @@ export interface DyvixMarqueeProps {
   children?: React.ReactNode;
   className?: string;
   repeat?: number;
+  reverse?: boolean;
   theme?: DyvixMarqueeThemes | null;
   animation?: DyvixMarqueeAnimation | null;
   overrides?: DyvixMarqueeWrapperOverride &

@@ -22,6 +22,7 @@ export function MarqueeTest() {
         theme={'Industrial'}
         timeline={tl}
         repeat={1}
+        reverse
         items={[
           { label: 'Next.js', href: 'https://nextjs.org' },
           { label: 'GSAP Animations', href: 'https://gsap.com' },
