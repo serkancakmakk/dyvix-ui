@@ -232,14 +232,23 @@ const DyvixMarquee = Object.assign(
 
           gsap.killTweensOf(track);
 
-          let activeTween = gsap.to(track, {
-            xPercent: -50,
-            duration: 20,
-            ease: 'none',
-            repeat: repeat
-          });
+          const baseDuration = 20 / (speed || 1);
 
-          activeTween.timeScale(speed);
+          let activeTween = gsap.fromTo(
+            track,
+            { xPercent: 0 },
+            {
+              xPercent: -50,
+              duration: baseDuration,
+              ease: 'none',
+              repeat: repeat,
+              onRepeat: () => {
+                gsap.set(track, {
+                  xPercent: 0
+                });
+              }
+            }
+          );
 
           const handleTrackOnMouseEnter = () => {
             if (pauseOnHover) {
@@ -248,7 +257,7 @@ const DyvixMarquee = Object.assign(
           };
           const handleTrackOnMouseLeave = () => {
             if (pauseOnHover) {
-              activeTween.resume();
+              activeTween.play();
             }
           };
           track.addEventListener('mouseenter', handleTrackOnMouseEnter);
