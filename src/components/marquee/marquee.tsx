@@ -17,6 +17,7 @@ const DyvixMarquee = Object.assign(
         items,
         className,
         animation = 'fade',
+        direction = 'horizantal',
         reverse = false,
         overrides,
         theme,
@@ -73,7 +74,12 @@ const DyvixMarquee = Object.assign(
       const currentTheme = theme ? (configs as any)['theme'] : null;
 
       const finalizedWrapperProps = {
-        className: 'dyvix-marquee-wrapper',
+        className: ConstructClasses(
+          'dyvix-marquee-wrapper',
+          direction === 'vertical'
+            ? 'dyvix-marquee-vertical'
+            : 'dyvix-marquee-horizontal'
+        ),
         style: {
           ...splitWrapperStyles,
           ...overrides
@@ -121,19 +127,20 @@ const DyvixMarquee = Object.assign(
       React.useLayoutEffect(() => {
         if (!internalRef.current) return;
 
-        const CalculateScreenWidth = () => {
+        const CalculateScreenAxisSize = () => {
           if (!internalRef.current) return;
-          setMaxSize(internalRef.current.offsetWidth | 0);
+          const axisScreenSize = direction === 'vertical'? internalRef.current.offsetHeight :internalRef.current.offsetWidth;
+          setMaxSize(axisScreenSize);
         };
 
-        CalculateScreenWidth();
+        CalculateScreenAxisSize();
 
-        const observe = new ResizeObserver(CalculateScreenWidth);
+        const observe = new ResizeObserver(CalculateScreenAxisSize);
 
         observe.observe(internalRef.current);
 
         return () => observe.disconnect();
-      }, []);
+      }, [direction]);
 
       React.useLayoutEffect(() => {
         if (!ogContentRef.current || maxSize === 0) return;
@@ -146,40 +153,40 @@ const DyvixMarquee = Object.assign(
 
         if (intialchildeNodes.length === 0) return;
 
-        const getCurrentWidth = () => {
+        const getCurrentSize = () => {
           let gapValue = 0;
-          let currentWidth = 0;
+          let currentSize = 0;
           if (ogContentRef.current) {
             intialchildeNodes.forEach((node) => {
-              currentWidth += node.getBoundingClientRect().width;
+              currentSize += direction === 'vertical' ? node.getBoundingClientRect().height :node.getBoundingClientRect().width;
             });
             const computedStyle = window.getComputedStyle(ogContentRef.current);
             const rawGap =
               computedStyle.gap || computedStyle.columnGap || '0px';
             gapValue = parseFloat(rawGap) || 0;
 
-            currentWidth += gapValue * (intialchildeNodes.length - 1);
+            currentSize += gapValue * (intialchildeNodes.length - 1);
           }
-          return { currentWidth, gapValue };
+          return { currentSize, gapValue };
         };
 
-        const { currentWidth, gapValue } = getCurrentWidth();
+        const { currentSize, gapValue } = getCurrentSize();
 
-        if (currentWidth === 0) return;
-        const fullSetMultiplier = Math.ceil(maxSize / currentWidth);
+        if (currentSize === 0) return;
+        const fullSetMultiplier = Math.ceil(maxSize / currentSize);
 
         const childrenArray = React.Children.toArray(compiledChildren);
-        let appendedWidth = -gapValue;
+        let appendedSize = -gapValue;
         let singleSetItems: React.ReactNode[] = [];
         outer: for (let i = 0; i < fullSetMultiplier; i++) {
           for (let j = 0; j < intialchildeNodes.length; j++) {
-            if (appendedWidth >= maxSize) break outer;
+            if (appendedSize >= maxSize) break outer;
             const child = intialchildeNodes[j];
             if (!child) continue;
-
-            const effectiveWidth =
-              child.getBoundingClientRect().width + gapValue;
-            appendedWidth += effectiveWidth;
+            const childSize = direction === 'vertical' ? child.getBoundingClientRect().height: child.getBoundingClientRect().width;
+            const effectiveSize =
+              childSize + gapValue;
+            appendedSize += effectiveSize;
             singleSetItems.push(childrenArray[j]);
           }
         }
@@ -236,18 +243,18 @@ const DyvixMarquee = Object.assign(
           const baseDuration = 20 / (speed || 1);
           const targetSource = reverse ? -50 : 0;
           const targetDestination = reverse ? 0 : -50;
-
+          const property = direction === 'vertical' ? 'yPercent': 'xPercent'
           let activeTween = gsap.fromTo(
             track,
-            { xPercent: targetSource },
+            { [property]: targetSource },
             {
-              xPercent: targetDestination,
+              [property]: targetDestination,
               duration: baseDuration,
               ease: 'none',
               repeat: repeat,
               onRepeat: () => {
                 gsap.set(track, {
-                  xPercent: targetSource
+                  [property]: targetSource
                 });
               }
             }
@@ -274,7 +281,7 @@ const DyvixMarquee = Object.assign(
         },
         {
           scope: trackRef,
-          dependencies: [displayItems, speed, repeat, pauseOnHover, reverse]
+          dependencies: [displayItems, speed, repeat, pauseOnHover, reverse, direction]
         }
       );
       return (

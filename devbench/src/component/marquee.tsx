@@ -6,23 +6,8 @@ export function MarqueeTest() {
   return (
     <>
       <DyvixMarquee
-        pauseOnHover
-        repeat={1}
-        animation={'drift'}
-        timeline={tl}
-        theme={'Singularity'}
-      >
-        <DyvixMarqueeItem>hi</DyvixMarqueeItem>
-        <DyvixMarqueeItem>hei</DyvixMarqueeItem>
-        <DyvixMarqueeItem>hi2</DyvixMarqueeItem>
-        <DyvixMarqueeItem>hi11</DyvixMarqueeItem>
-      </DyvixMarquee>
-
-      <DyvixMarquee
-        theme={'Industrial'}
         timeline={tl}
         repeat={1}
-        reverse
         items={[
           { label: 'Next.js', href: 'https://nextjs.org' },
           { label: 'GSAP Animations', href: 'https://gsap.com' },
