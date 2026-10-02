@@ -59,26 +59,21 @@
   font-weight: var(--dyvix-marquee-font-weight, 200);
   font-family: var(--dyvix-marquee-font-family, 'Geist', sans-serif);
   letter-spacing: var(--dyvix-marquee-letter-spacing, -0.02em);
-
   border-radius: var(--dyvix-marquee-border-radius, 0px);
   -webkit-backdrop-filter: var(--dyvix-marquee-backdrop-blur, blur(12px));
   backdrop-filter: var(--dyvix-marquee-backdrop-blur, blur(12px));
+  backface-visibility: hidden;
+  transform: translateZ(0);
   transition: var(--dyvix-marquee-transition, all 0.2s ease-in-out);
 }
 .dyvix-marquee-horizontal .dyvix-marquee {
   width: 100%;
-  border-inline: none;
-  border-block-width: var(--dyvix-marquee-border-width, 1px);
-  border-block-style: var(--dyvix-marquee-border-style, solid);
 }
 .dyvix-marquee-vertical .dyvix-marquee {
   height: 100%;
-  border-block: none;
-  border-inline-width: var(--dyvix-marquee-border-width, 1px);
-  border-inline-style: var(--dyvix-marquee-border-style, solid);
 }
 .dyvix-marquee:hover {
-  transform: var(--dyvix-marquee-hover-transform, translateY(1px));
+  transform: var(--dyvix-marquee-hover-transform, translateY(1px)) translateZ(0);
 }
 .dyvix-marquee-default {
   background: var(
@@ -98,19 +93,17 @@
 }
 
 .dyvix-marquee-horizontal .dyvix-marquee-default {
-  border-top-color: var(--dyvix-marquee-border-color, rgba(255, 255, 255, 0.1));
-  border-bottom-color: var(
-    --dyvix-marquee-border-color,
-    rgba(255, 255, 255, 0.1)
-  );
+  border-inline: none;
+  border-block-width: var(--dyvix-marquee-border-width, 1px);
+  border-block-style: var(--dyvix-marquee-border-style, solid);
+  border-block-color: var(--dyvix-marquee-border-color, rgba(255, 255, 255, 0.1));
 }
 
 .dyvix-marquee-vertical .dyvix-marquee-default {
-  border-left-color: var(--dyvix-marquee-border-color, rgba(255, 255, 255, 0.1));
-  border-right-color: var(
-    --dyvix-marquee-border-color,
-    rgba(255, 255, 255, 0.1)
-  );
+  border-block: none;
+  border-inline-width: var(--dyvix-marquee-border-width, 1px);
+  border-inline-style: var(--dyvix-marquee-border-style, solid);
+  border-inline-color: var(--dyvix-marquee-border-color, rgba(255, 255, 255, 0.1));
 }
 .dyvix-marquee-default:hover {
   background: var(
@@ -123,28 +116,13 @@
       rgba(255, 255, 255, 0.3) 100%
     )
   );
-  border-width: var(
-    --dyvix-marquee-hover-border-width,
-    var(--dyvix-marquee-border-width, 1px)
-  );
-  border-style: var(
-    --dyvix-marquee-hover-border-style,
-    var(--dyvix-marquee-border-style, solid)
-  );
-  border-color: var(
-    --dyvix-marquee-hover-border-color,
-    rgba(255, 255, 255, 0.2)
-  );
-  border-radius: var(
-    --dyvix-marquee-hover-border-radius,
-    var(--dyvix-marquee-border-radius, 6px)
-  );
   color: var(--dyvix-marquee-hover-color, #fff);
   box-shadow: var(
     --dyvix-marquee-hover-box-shadow,
     0 4px 12px rgba(0, 0, 0, 0.5)
   );
 }
+
 .dyvix-marquee-horizontal .dyvix-marquee-default:hover {
   border-block-width: var(--dyvix-marquee-hover-border-width, var(--dyvix-marquee-border-width, 1px));
   border-block-style: var(--dyvix-marquee-hover-border-style, var(--dyvix-marquee-border-style, solid));

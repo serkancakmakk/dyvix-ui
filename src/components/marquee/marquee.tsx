@@ -66,7 +66,7 @@ const DyvixMarquee = Object.assign(
             </DyvixMarqueeItem>
           );
         });
-      }, [children, items]);
+      }, [children, items, direction]);
       const initialChildrenCount = React.Children.count(compiledChildren);
       const { style: splitElementStyles, ...restElementProps } = elementProps;
       const { style: splitWrapperStyles, ...restWrapperProps } = wrapperProps;
@@ -201,7 +201,7 @@ const DyvixMarquee = Object.assign(
         };
 
         setDisplayItems(finalizedItems);
-      }, [compiledChildren, maxSize]);
+      }, [compiledChildren, maxSize, direction]);
 
       useGSAP(
         () => {
@@ -214,7 +214,7 @@ const DyvixMarquee = Object.assign(
           };
           if (timeline) {
             const normalizedTheme = theme ?? null;
-            const normalizedAnimation = theme ?? null;
+            const normalizedAnimation = animation ?? null;
             if (
               addedToTimeLineRef.current?.theme === normalizedTheme &&
               addedToTimeLineRef.current?.animation === normalizedAnimation
