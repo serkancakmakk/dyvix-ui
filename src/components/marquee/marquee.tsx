@@ -129,7 +129,10 @@ const DyvixMarquee = Object.assign(
 
         const CalculateScreenAxisSize = () => {
           if (!internalRef.current) return;
-          const axisScreenSize = direction === 'vertical'? internalRef.current.offsetHeight :internalRef.current.offsetWidth;
+          const axisScreenSize =
+            direction === 'vertical'
+              ? internalRef.current.offsetHeight
+              : internalRef.current.offsetWidth;
           setMaxSize(axisScreenSize);
         };
 
@@ -158,7 +161,10 @@ const DyvixMarquee = Object.assign(
           let currentSize = 0;
           if (ogContentRef.current) {
             intialchildeNodes.forEach((node) => {
-              currentSize += direction === 'vertical' ? node.getBoundingClientRect().height :node.getBoundingClientRect().width;
+              currentSize +=
+                direction === 'vertical'
+                  ? node.getBoundingClientRect().height
+                  : node.getBoundingClientRect().width;
             });
             const computedStyle = window.getComputedStyle(ogContentRef.current);
             const rawGap =
@@ -183,9 +189,11 @@ const DyvixMarquee = Object.assign(
             if (appendedSize >= maxSize) break outer;
             const child = intialchildeNodes[j];
             if (!child) continue;
-            const childSize = direction === 'vertical' ? child.getBoundingClientRect().height: child.getBoundingClientRect().width;
-            const effectiveSize =
-              childSize + gapValue;
+            const childSize =
+              direction === 'vertical'
+                ? child.getBoundingClientRect().height
+                : child.getBoundingClientRect().width;
+            const effectiveSize = childSize + gapValue;
             appendedSize += effectiveSize;
             singleSetItems.push(childrenArray[j]);
           }
@@ -243,7 +251,7 @@ const DyvixMarquee = Object.assign(
           const baseDuration = 20 / (speed || 1);
           const targetSource = reverse ? -50 : 0;
           const targetDestination = reverse ? 0 : -50;
-          const property = direction === 'vertical' ? 'yPercent': 'xPercent'
+          const property = direction === 'vertical' ? 'yPercent' : 'xPercent';
           let activeTween = gsap.fromTo(
             track,
             { [property]: targetSource },
@@ -281,7 +289,14 @@ const DyvixMarquee = Object.assign(
         },
         {
           scope: trackRef,
-          dependencies: [displayItems, speed, repeat, pauseOnHover, reverse, direction]
+          dependencies: [
+            displayItems,
+            speed,
+            repeat,
+            pauseOnHover,
+            reverse,
+            direction
+          ]
         }
       );
       return (

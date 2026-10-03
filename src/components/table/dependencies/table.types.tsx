@@ -34,6 +34,7 @@ export type DyvixTableThemes =
   | 'Midnight'
   | 'Crimson'
   | 'Obsidian'
+  | 'Coffee'
   | 'Cosmos'
   | 'Sakura'
   | 'Volcanic';

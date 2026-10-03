@@ -96,14 +96,20 @@
   border-inline: none;
   border-block-width: var(--dyvix-marquee-border-width, 1px);
   border-block-style: var(--dyvix-marquee-border-style, solid);
-  border-block-color: var(--dyvix-marquee-border-color, rgba(255, 255, 255, 0.1));
+  border-block-color: var(
+    --dyvix-marquee-border-color,
+    rgba(255, 255, 255, 0.1)
+  );
 }
 
 .dyvix-marquee-vertical .dyvix-marquee-default {
   border-block: none;
   border-inline-width: var(--dyvix-marquee-border-width, 1px);
   border-inline-style: var(--dyvix-marquee-border-style, solid);
-  border-inline-color: var(--dyvix-marquee-border-color, rgba(255, 255, 255, 0.1));
+  border-inline-color: var(
+    --dyvix-marquee-border-color,
+    rgba(255, 255, 255, 0.1)
+  );
 }
 .dyvix-marquee-default:hover {
   background: var(
@@ -124,15 +130,33 @@
 }
 
 .dyvix-marquee-horizontal .dyvix-marquee-default:hover {
-  border-block-width: var(--dyvix-marquee-hover-border-width, var(--dyvix-marquee-border-width, 1px));
-  border-block-style: var(--dyvix-marquee-hover-border-style, var(--dyvix-marquee-border-style, solid));
-  border-block-color: var(--dyvix-marquee-hover-border-color, rgba(255, 255, 255, 0.2));
+  border-block-width: var(
+    --dyvix-marquee-hover-border-width,
+    var(--dyvix-marquee-border-width, 1px)
+  );
+  border-block-style: var(
+    --dyvix-marquee-hover-border-style,
+    var(--dyvix-marquee-border-style, solid)
+  );
+  border-block-color: var(
+    --dyvix-marquee-hover-border-color,
+    rgba(255, 255, 255, 0.2)
+  );
 }
 
 .dyvix-marquee-vertical .dyvix-marquee-default:hover {
-  border-inline-width: var(--dyvix-marquee-hover-border-width, var(--dyvix-marquee-border-width, 1px));
-  border-inline-style: var(--dyvix-marquee-hover-border-style, var(--dyvix-marquee-border-style, solid));
-  border-inline-color: var(--dyvix-marquee-hover-border-color, rgba(255, 255, 255, 0.2));
+  border-inline-width: var(
+    --dyvix-marquee-hover-border-width,
+    var(--dyvix-marquee-border-width, 1px)
+  );
+  border-inline-style: var(
+    --dyvix-marquee-hover-border-style,
+    var(--dyvix-marquee-border-style, solid)
+  );
+  border-inline-color: var(
+    --dyvix-marquee-hover-border-color,
+    rgba(255, 255, 255, 0.2)
+  );
 }
 .dyvix-marquee-track {
   display: flex;
