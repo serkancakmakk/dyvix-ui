@@ -9,6 +9,7 @@ export function TableTest() {
   return (
     <>
       <DyvixTable
+        theme={'Coffee'}
         animation={'aurora'}
         columns={[
           { key: 'id', label: 'ID', sortable: true },
