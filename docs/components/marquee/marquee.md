@@ -21,6 +21,8 @@ DyvixMarquee is an animated Marquee component that supports both themed and unst
   - : `number`. Defaults to `1`. Identifies the speed of the marquee loop.
 - `direction`
   - : `'vertical' | 'horizontal'`. Defaults to `horizontal`. Indicates the marquee axis of movement. `'horizontal'` moves side-to-side (left/right), while `'vertical'` moves top-to-bottom (up/down).
+- `reverse`
+  - : `boolean`. Defaults to `false`. Reverses the scroll movement along the current axis.
 - `pauseOnHover`
   - : `boolean`. Defaults to `false`. Pauses on hover if true.
 - `overrides`
