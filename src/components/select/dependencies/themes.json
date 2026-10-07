@@ -68,5 +68,12 @@
     "input-class": "dyvix-select-input-frost",
     "dropdown-class": "dyvix-select-dropdown-frost",
     "default-animation": "unfold"
+  },
+  {
+    "theme": "Aurora",
+    "class": "dyvix-select-aurora",
+    "input-class": "dyvix-select-input-aurora",
+    "dropdown-class": "dyvix-select-dropdown-aurora",
+    "default-animation": "aurora"
   }
 ]

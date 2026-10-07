@@ -100,7 +100,7 @@
   );
 }
 .dyvix-select .dyvix-select-input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: inherit;
   font-size: 0.9rem;
 }
 .dyvix-select-default .dyvix-select-input {
